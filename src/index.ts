@@ -28,8 +28,8 @@ function startFetchNginx(fetchInterval: number) {
   try {
     const url = URL.parse(config.nginx);
     logger.debug(url);
-    const ng = new NginxStatus({ host: url.host, port: Number(url.port || 80), path: url.path });
-    setInterval(async function () {
+    const ng = new NginxStatus({ host: url.host!, port: Number(url.port || 80), path: url.path! });
+    setInterval(async function() {
       const info = await ng.getStatus();
       if (info) EVENTS.push([KEYS.Nginx, info]);
     }, fetchInterval);
@@ -73,7 +73,7 @@ if (config.influxdb) {
     startSocketServer(dataInterval);
   }
 
-  setInterval(async function () {
+  setInterval(async function() {
     if (SEDNING) return;
     logger.debug("Start Interval");
     SEDNING = true;
@@ -107,7 +107,7 @@ if (config.influxdb) {
             break;
           case KEYS.Socket:
             data.push({
-              measurement: "data",
+              measurement: event[1].measurement ? `data-${event[1].measurement}` : "data",
               tags: { host, ...event[1].tags },
               fields: event[1].fields,
               timestamp: event[1].timestamp,
@@ -146,5 +146,5 @@ if (config.influxdb) {
   logger.info("Run `pm2 set pm2-guarded:fetchInterval 1000` to set info fetch interval");
   logger.info("Run `pm2 set pm2-guarded:sendInterval 5000` to set data send interval");
 
-  setInterval(() => { }, 60000);
+  setInterval(() => {}, 60000);
 }

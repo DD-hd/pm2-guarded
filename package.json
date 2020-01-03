@@ -1,14 +1,14 @@
 {
   "name": "pm2-guarded",
-  "version": "0.10.0",
+  "version": "0.10.3",
   "description": "pm2 guarded",
   "main": "dist/index.js",
   "dependencies": {
-    "influx": "^5.4.2"
+    "influx": "^5.5.1"
   },
   "devDependencies": {
-    "@types/node": "^12.7.12",
-    "prettier": "^1.18.2",
+    "@types/node": "^12.12.11",
+    "prettier": "^1.19.1",
     "typescript": "^3.7.2"
   },
   "scripts": {
