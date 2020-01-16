@@ -1,5 +1,5 @@
 {
-  "name": "pm2-guarded",
+  "name": "d-pm2-guarded",
   "version": "0.10.3",
   "description": "pm2 guarded",
   "main": "dist/index.js",

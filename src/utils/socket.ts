@@ -30,6 +30,7 @@ export class SocketUpload {
     this.timeGap = timeGap;
   }
   startServer(path: string, onTick: (args: any[]) => void) {
+    fs.unlinkSync(path);
     const server = net.createServer(c => {
       logger.info("客户端成功接入");
       let parser = new SocketParser();
